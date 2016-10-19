@@ -1,0 +1,7 @@
+export(POSTglm, POSTcoxph)
+importFrom(stats, as.formula, binomial, cor, cov, glm, pchisq)
+importFrom(survival, coxph)
+importFrom(Matrix, nearPD)
+importFrom(CompQuadForm, davies)
+importFrom(Biobase, exprs, pData)
+importFrom(GSEABase, setName,  geneIds)

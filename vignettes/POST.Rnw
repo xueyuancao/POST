@@ -1,0 +1,98 @@
+%\VignetteIndexEntry{An introduction to POST}
+%\VignetteDepends{Biobase,CompQuadForm,GSEABase}
+%\VignetteKeywords{Microarray Integration}
+%\VignettePackage{POST}
+\documentclass[]{article}
+
+\usepackage{times}
+\usepackage{hyperref}
+
+\newcommand{\Rpackage}[1]{{\textit{#1}}}
+
+\title{An Introduction to \Rpackage{POST}}
+\author{Xueyuan Cao, Stanley Pounds}
+\date{October 21, 2016}
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+\maketitle
+
+<<options,echo=FALSE>>=
+options(width=60)
+@ 
+
+\section{Introduction}
+
+POST, Projection onto Orthognal Space Test, is a general procedure to tes a set of genomic 
+features that exhibit association with an endpoint variable.  
+For each gene-set, POST represents the gene profiles as a set of eigenvectors and then uses statistical modeling 
+to compute a set of (adjusted) z-statistics that measure the association of each eigenvector with the phenotype. 
+The overall gene-set statistic is the sum of squared z-statistics weighted by the corresponding eigenvector. 
+Finally, bootstrapping is used to compute a $p$-value.
+
+In this document, we describe how to perform POST procedure using hypothetical example data sets provided with the package. 
+
+\section{Requirements}
+
+The POST package depends on {\em Biobase}, {\em GSEABase}, {\em CompQuadForm} and {\em Matrix}. 
+The understanding of {\em ExpressionSet} and {\em GeneSetCollection} is a prerequiste to perform the POST procedure. 
+
+The detailed requirements are illustrated below.
+
+Load the POST package and the example data sets: sampExprSet and exmplGeneSet into R.
+
+<<Load POST package and data>>=
+library(POST)
+data(sampExprSet)
+data(sampGeneSet)
+@
+
+The {\em ExpressionSet} should contain at least two components: 
+{\em exprs} (array data) and {\em phenoData} (endpoint data). 
+{\em exprs} is a data frame with column names representing the array identifiers (IDs) and 
+row names representing the probe (genomic feature) IDs. 
+{\em phenoData} is an {\em AnnotatedDataFrame} with column names representing the endpoint 
+variables and row names representing array. The array IDs of {\em phenoData} and {\em exprs} should be matched.
+
+{\em GeneSetCollection} contains gene set definiton. 
+This gene set collection can be from biological processes or ontologies. 
+In this hypothetical example, we are interested in testing association of expression of 4 gene sets with 
+a binary outcome and associatiion of expression of gene sets with a time-to-event endpoint.
+
+\section{POST Analysis}
+As mentioned in section 2, the {\em ExpressionSet} and {\em GeneSetCollection} are required by POST procedure. 
+The code below performs a POST analysis at gene set level to detect assocaiton of gene set with binary outcome 
+in logistic regression framework.
+<<POST logistic regression, results=hide>>=
+ test<-POSTglm(exprSet=sampExprSet,                         
+               geneSet=sampGeneSet,                         
+               lamda=0.95,                      
+               seed=13,                        
+               nboots=100,                      
+               modd='Group ~ ',   
+               family=binomial(link = "logit")) 
+@
+Gene set result:
+<<Gene Level Result>>=
+test
+@
+
+The code below performs POST analysis at gene set level to detect assocaiton of gene set with 
+time to event endpoint in Cox proportional hazard model famework. 
+
+<<POST Cox proportional hazard regression, results=hide>>=
+ test2<-POSTcoxph(exprSet=sampExprSet,                         
+               geneSet=sampGeneSet,                         
+               lamda=0.95,                                            
+               nboots=100,                      
+               modd= "Surv(time, censor) ~ ",
+               seed=13) 
+@
+
+<<Gene set result>>=
+test2
+@
+
+\end{document}
+
