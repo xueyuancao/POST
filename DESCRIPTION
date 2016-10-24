@@ -1,7 +1,7 @@
 Package: POST
 Type: Package
 Title: Projection onto Orthogonal Space Testing for High Dimensional Data
-Version: 0.98.1
+Version: 0.98.2
 Author: Xueyuan Cao <xueyuan.cao@stjude.org> and Stanley.pounds <stanley.pounds@stjude.org>
 Maintainer: Xueyuan Cao <xueyuan.cao@stjude.org>
 Description: Perform orthogonal projection of high dimensional data of a set, and statistical modeling of phenotye with projected vectors as predictor.

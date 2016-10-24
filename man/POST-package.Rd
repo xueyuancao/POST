@@ -1,6 +1,6 @@
 \name{POST-package}
 \alias{POST-package}
- \Rdversion{3.3.0}
+ \Rdversion{3.3.1}
  \docType{package}
  \title{
    Projection onto Orthogonal Space Testing for High Dimensional Data
@@ -13,8 +13,8 @@
    \tabular{ll}{
      Package: \tab POST\cr
      Type: \tab Package\cr
-     Version: \tab 0.99.1\cr
-     Date: \tab 2016-10-21\cr
+     Version: \tab 0.98.2\cr
+     Date: \tab 2016-10-24\cr
      License: \tab GPL (>=2)\cr
      LazyLoad: \tab yes\cr
    }
