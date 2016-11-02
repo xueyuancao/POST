@@ -13,8 +13,8 @@
    \tabular{ll}{
      Package: \tab POST\cr
      Type: \tab Package\cr
-     Version: \tab 0.99.2\cr
-     Date: \tab 2016-10-24\cr
+     Version: \tab 0.99.3\cr
+     Date: \tab 2016-11-2\cr
      License: \tab GPL (>=2)\cr
      LazyLoad: \tab yes\cr
    }
@@ -40,6 +40,6 @@
                lamda=0.95,                      
                seed=13,                        
                nboots=100,                      
-               modd='Group ~ ',   
+               model='Group ~ ',   
                family=binomial(link = "logit")) 
  }

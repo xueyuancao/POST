@@ -4,7 +4,7 @@
  \description{Peform POST analysis with linear model}
 \usage{
 POSTglm (exprSet, geneSet, lamda = 0.95, seed = 13, nboots = 100, 
-    modd = "Group ~ ", family = binomial(link = "logit"), ...) 
+    model = "Group ~ ", family = binomial(link = "logit"), ...) 
 }
  \arguments{
  \item{exprSet}{an ExpressionSet class contains minimum of exprs (expression matrix) of genomic data 
@@ -12,14 +12,15 @@ POSTglm (exprSet, geneSet, lamda = 0.95, seed = 13, nboots = 100,
                 Please refer to Biobase for details on how to create such an ExpressionSet expression set. }
  \item{geneSet}{a GeneSetCollection class with minimum of setName and geneIDs for each GeneSet. 
                 Please refer to \emph{GSEABase} for how to create such a GeneSetCollection class.}
- \item{lamda}{a predefined fraction} 
+ \item{lamda}{a predefined fraction of 0 to 1: the fraction of variation retained in the selected orthogonal projections} 
  \item{seed}{seed of random number generator}
  \item{nboots}{number of bootstrap samples, default=100}
- \item{modd}{a character string to define the model}
+ \item{model}{a character string to define the model}
  \item{family}{a description of the error distribution and link function to be used in the model. 
                For glm, this can be a character string naming a family function, 
                a family function or the result of a call to a family function.}
- \item{...}{For glm: arguments to be used to form the default control argument if it is not supplied directly}                         
+ \item{...}{control arguments to be passed to generalized linear model,
+            default control argument are used if they are not supplied directly}                         
  }
  \details{The function performs POST analysis for association of gene sets with phenotype 
           in generalized linear model framework.}
@@ -29,7 +30,7 @@ POSTglm (exprSet, geneSet, lamda = 0.95, seed = 13, nboots = 100,
        \item{Nprobe}{numbe of probes in the ExpressionSet annotated to the gene set}
        \item{Nproj}{number of projected vectors included in the POST analysis}
        \item{Stat}{statistic of quadratic form}  
-       \item{p.value}{p value} 
+       \item{p.value}{p value of generalized Chi-square approximation} 
  }
  \author{Xueyuan Cao \email{Xueyuan.cao@stjude.org}, Stanley Pounds \email{stanley.pounds@stjude.org}}
  \examples{
@@ -41,6 +42,6 @@ POSTglm (exprSet, geneSet, lamda = 0.95, seed = 13, nboots = 100,
                lamda=0.95,                      
                seed=13,                        
                nboots=100,                      
-               modd='Group ~ ',   
+               model='Group ~ ',   
                family=binomial(link = "logit")) 
  }
