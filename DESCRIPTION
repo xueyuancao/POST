@@ -1,11 +1,12 @@
 Package: POST
 Type: Package
 Title: Projection onto Orthogonal Space Testing for High Dimensional Data
-Version: 0.99.4
+Version: 0.99.5
 Author: Xueyuan Cao <xueyuan.cao@stjude.org> and Stanley.pounds <stanley.pounds@stjude.org>
 Maintainer: Xueyuan Cao <xueyuan.cao@stjude.org>
 Description: Perform orthogonal projection of high dimensional data of a set, and statistical modeling of phenotye with projected vectors as predictor.
-Depends: R (>= 3.4.0), stats, CompQuadForm, Matrix, survival, Biobase, GSEABase 
+Depends: R (>= 3.4.0) 
+Imports: stats, CompQuadForm, Matrix, survival, Biobase, GSEABase 
 License: GPL (>= 2)
 biocViews: Microarray, GeneExpression
 LazyLoad: yes
