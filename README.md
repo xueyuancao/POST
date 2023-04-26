@@ -4,4 +4,4 @@ Projection onto Orthogonal Space Testing (POST) for High Dimensional Data is a t
 ## Install the development version from GitHub:
 ```r
 devtools::install_github('xueyuancao/POST')
-```r
+```
